@@ -24,8 +24,7 @@ export default function Home() {
       });
   }, []);
 
-  if (loading) return <div className="loading">Loading users...</div>;
-  if (error) return <div className="error">{error}</div>;
+  
 
   return (
     

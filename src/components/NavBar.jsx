@@ -1,12 +1,26 @@
 // components/NavBar.js
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h2 className="navbar-title">Overview</h2>
+        <h2 className="navbar-title">🌐</h2>
       </div>
+      <div>
+      
+         
+        <button className="btn">
+          <Link to="/">Accueil</Link>
+        </button>
+        <button className="btn">
+          <Link to="/add-user">Ajouter un utilisateur</Link>
+        </button>
+      
+
+      </div>
+      
       <div className="navbar-right">
         <input
           type="text"

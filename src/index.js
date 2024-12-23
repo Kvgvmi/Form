@@ -1,12 +1,16 @@
-import React from 'react';
-import { BrowserRouter } from "react-router-dom";
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './App.css';
+import React from "react";
+import ReactDOM from "react-dom/client"; // Use the correct import for React 18
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import './App.css';  
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+// Create the root using ReactDOM.createRoot
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
     <App />
-  </BrowserRouter>,
+  </React.StrictMode>
 );
+
+// Optional: Measure performance in your app
+reportWebVitals();

@@ -25,7 +25,7 @@ export default function UserTable({ users }) {
               <td>
                 
                 <button className="btn" onClick={() => console.log("Update", user.id)}>
-                  <Link to={`/edit-user/${user.id}`} className="Update-link">Update</Link>
+                  <Link to={`/user/${user.id}/edit`} className="Update-link">Update</Link>
                 </button>
               </td>
               <td>
@@ -38,9 +38,6 @@ export default function UserTable({ users }) {
           ))}
         </tbody>
       </table>
-      <Link to="/add-user">
-        <button className="btn">Add User</button>
-      </Link>
     </div>
   );
 }

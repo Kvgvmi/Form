@@ -1,66 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "./UserDetail.css";
-
+import { useParams } from "react-router-dom";
+import NavBar from "../components/NavBar";
 export default function UserDetail() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((response) => {
-        if (!response.ok) throw new Error("User not found");
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched User Data:", data); // Debugging
-        setUser(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching user:", err);
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [id]);
-
-  if (loading) return <div className="loading">Loading user details...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!user) return <div className="error">User not found</div>;
-
-  return (
-    <div className="detail-container">
-      <div className="detail-header">
-        <h2>User Details</h2>
-        <button onClick={() => navigate(`/user/${id}/edit`)} className="edit-btn">
-          Edit User
-        </button>
-      </div>
-      <div className="detail-content">
-        <div className="detail-group">
-          <label>ID:</label>
-          <p>#{user.id}</p>
-        </div>
-        <div className="detail-group">
-          <label>Name:</label>
-          <p>{user.name}</p>
-        </div>
-        <div className="detail-group">
-          <label>Email:</label>
-          <p>{user.email}</p>
-        </div>
-        <div className="detail-group">
-          <label>Phone:</label>
-          <p>{user.phone}</p>
-        </div>
-        <div className="detail-group">
-          <label>Website:</label>
-          <p>{user.website}</p>
+    const { id } = useParams();
+    const [user, setUser] = useState(null);
+  
+    useEffect(() => {
+      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then((response) => response.json())
+        .then((data) => setUser(data));
+    }, [id]);
+  
+    if (!user) return <p className="loading">Chargement...</p>;
+  
+    return (
+      <div className="user-detail-container">
+        <NavBar />
+        <div className="user-detail-content">
+          <h1 className="user-detail-title">Détails de l'utilisateur</h1>
+          <div className="user-detail-info">
+            <p><strong>Nom :</strong> {user.name}</p>
+            <p><strong>Email :</strong> {user.email}</p>
+            <p><strong>Téléphone :</strong> {user.phone}</p>
+            <p>
+              <strong>Site web :</strong> 
+              <a href={`http://${user.website}`} target="_blank" rel="noopener noreferrer">
+                {user.website}
+              </a>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }

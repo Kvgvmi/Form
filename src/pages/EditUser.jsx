@@ -1,55 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import UserForm from "../components/UserForm";
-import "./EditUser.css";
+import NavBar from "../components/NavBar";
 
 export default function EditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then((response) => {
-        if (!response.ok) throw new Error("User not found");
-        return response.json();
-      })
-      .then((data) => {
-        setUser(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+      .then((response) => response.json())
+      .then((data) => setUser(data));
   }, [id]);
 
   const handleUpdateUser = (updatedUser) => {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedUser),
-    })
-      .then(response => response.json())
-      .then(() => {
-        navigate('/');
-      })
-      .catch(error => {
-        console.error('Error updating user:', error);
-      });
+    console.log("Utilisateur mis à jour :", updatedUser);
+    navigate("/");
   };
 
-  if (loading) return <div className="loading">Loading user data...</div>;
-  if (error) return <div className="error">{error}</div>;
-  if (!user) return <div className="error">User not found</div>;
+  if (!user) return <p>Chargement...</p>;
 
   return (
-    <div className="edit-container">
-      <h2>Edit User</h2>
+    <div>
+      <NavBar/>
+      <h1>Modifier un utilisateur</h1>
       <UserForm initialData={user} onSubmit={handleUpdateUser} />
     </div>
   );

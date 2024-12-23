@@ -39,6 +39,7 @@ body, html {
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s;
     
+    
   }
   
   .btn:hover {
@@ -117,7 +118,7 @@ body, html {
 }
 
 .navbar-title {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   color: #1a2e55;
 }
@@ -194,4 +195,68 @@ body, html {
 .emoji-button:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* UserDetail.css */
+
+/* General container styling */
+.user-detail-container {
+  font-family: 'Arial', sans-serif;
+  padding: 120px 20px; /* Adjusted padding for spacing from the navbar */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Centered content with a card-like appearance */
+.user-detail-content {
+  max-width: 600px;
+  margin: 60px auto; /* Added margin to leave space from the navbar */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Title styling */
+.user-detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* User information styling */
+.user-detail-info {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555555;
+}
+
+.user-detail-info p {
+  margin-bottom: 15px;
+}
+
+/* Highlight for strong text */
+.user-detail-info strong {
+  color: #333333;
+}
+
+/* Link styling */
+.user-detail-info a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.user-detail-info a:hover {
+  text-decoration: underline;
+}
+
+/* Loading text styling */
+.loading {
+  font-size: 1.2rem;
+  color: #666666;
+  text-align: center;
+  margin-top: 100px;
 }

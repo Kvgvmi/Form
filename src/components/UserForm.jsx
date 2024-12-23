@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./UserForm.css";
+import { useNavigate } from "react-router-dom";
+
 
 export default function UserForm({ initialData = {}, onSubmit }) {
   const [user, setUser] = useState({ 
@@ -8,10 +10,14 @@ export default function UserForm({ initialData = {}, onSubmit }) {
     ...initialData 
   });
 
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(user);
   };
+
+  const cansel=()=>{
+  navigate("/")}
 
   return (
     <div className="form-container">
@@ -36,8 +42,11 @@ export default function UserForm({ initialData = {}, onSubmit }) {
             required
           />
         </div>
-        <button type="submit" className="submit-btn">
+        <button type="submit" className="btn">
           Save User
+        </button>
+        <button type="button" className="btn" onClick={cansel} >
+          Cancel
         </button>
       </form>
     </div>
