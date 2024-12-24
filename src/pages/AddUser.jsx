@@ -3,10 +3,12 @@ import UserForm from "../components/UserForm";
 export default function AddUser() {
   const [users, setUsers] = useState([]);
   //const navigate = useNavigate();
+  const navigate = useNavigate();
   const handleAddUser = (user) => {
     const newUser = { id: users.length + 1, ...user };
     setUsers([...users, newUser]);
     //navigate("/");
+    navigate("/");
   };
   return (
     <div>
