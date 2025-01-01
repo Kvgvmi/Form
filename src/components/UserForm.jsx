@@ -4,16 +4,14 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function UserForm({ initialData = {}, onSubmit }) {
-  const [user, setUser] = useState({ 
-    name: "", 
-    email: "", 
-    ...initialData 
-  });
+  const [user, setUser] = useState([]);
 
   const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(user);
+     const newUser  = { id: user.length + 1, ...user }; 
+    setUser([...user, newUser ]);
+    navigate("/")
   };
 
   const cansel=()=>{

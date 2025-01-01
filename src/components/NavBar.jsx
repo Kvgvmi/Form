@@ -1,8 +1,14 @@
 // components/NavBar.js
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({handleAddUser }) {
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const toggleFormVisibility = () => {
+    setIsFormVisible((prev) => !prev);
+  };
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -14,7 +20,7 @@ export default function NavBar() {
         <button className="btn">
           <Link to="/">Accueil</Link>
         </button>
-        <button className="btn">
+        <button className="btn" onClick={toggleFormVisibility}>
           <Link to="/add-user">Ajouter un utilisateur</Link>
         </button>
       
