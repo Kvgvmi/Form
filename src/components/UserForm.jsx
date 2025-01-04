@@ -11,7 +11,9 @@ export default function UserForm({ initialData = {}, onSubmit }) {
     e.preventDefault();
      const newUser  = { id: user.length + 1, ...user }; 
     setUser([...user, newUser ]);
+    //for navigation
     navigate("/")
+
   };
 
   const cansel=()=>{
